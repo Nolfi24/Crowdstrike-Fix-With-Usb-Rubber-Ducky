@@ -1,0 +1,60 @@
+REM Ensure delay to give the system time to start booting
+DELAY 5000
+
+REM Press Shift + F8 multiple times to open Advanced Boot Options
+REM Note: Shift + F8 might not work on all systems. Sometimes F8 alone is needed.
+REPEAT 30
+DELAY 200
+SHIFT F8
+ENDREPEAT
+
+REM Give some time to load Advanced Boot Options menu
+DELAY 5000
+
+REM select Safe Mode with Networking
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+DOWNARROW
+DELAY 500
+ENTER
+
+REM Wait for Safe Mode to load
+DELAY 20000
+
+REM Open Command Prompt as Administrator
+GUI r
+DELAY 500
+STRING cmd
+DELAY 500
+CTRL SHIFT ENTER
+DELAY 2000
+
+REM Confirm the UAC prompt (if it appears)
+ALT y
+DELAY 1000
+
+REM Execute commands in Command Prompt
+STRING echo Safe Mode is loaded successfully.
+ENTER
+DELAY 500
+STRING cd "C:\Windows\System32\drivers\CrowdStrike"
+ENTER
+DELAY 500
+STRING del C-00000291*.sys
+ENTER
+DELAY 500
+STRING echo Script has ben executed...
+ENTER
+DELAY 500
+STRING echo Remember to take out the Rubber Ducky!
+ENTER
+DELAY 500
+STRING echo Rebooting System...
+ENTER
+DELAY 2000
+STRING shutdown /r /t 0
+ENTER
